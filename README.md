@@ -9,6 +9,7 @@
   - pytorch 2.2.2
   - pytorch-cuda 12.1
   - pytorch-lightning 2.4.0
+  - lightning 2.4.0
   - peft 0.13.2
   - transformers 4.46.3
 
