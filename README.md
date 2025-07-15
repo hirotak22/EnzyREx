@@ -19,6 +19,60 @@ conda env create -f environment.yml
 conda activate deepres
 ```
 
+## Program Usage
+### EnzymeCNN
+```
+python enzymecnn.py \
+    --num-inputs 20 \
+    --num-channels 600 600 600 600 600 \
+    --kernel-size 9 \
+    --dilation 3 \
+    --dropout 0.1 \
+    --hidden-dims 256 \
+    --epoch 2 \
+    --eval-dataset data/sample_proteins.tsv \
+    --mode inference \
+    --checkpoint checkpoint/best_enzymecnn_checkpoint.pt \
+    --outputdir result/enzymecnn/ \
+```
+- --mode: Please specify "train" or "eval" or "inference".
+- --model: Please spcify "EnzymeCNN" or "EnzymeCNN-AA" or "EnzymeCNN-3Di" (default: "EnzymeCNN").
+
+### Process EnzymeCNN result
+```
+python process_enzymecnn_result.py \
+    --dataset data/sample_proteins.tsv \
+    --pred-scores result/enzymecnn/pred_scores.pt \
+    --output result/enzymecnn/sample_proteins.processed.tsv
+```
+
+### EnzymeCLIP
+```
+python enzymeclip.py \
+    --protein-checkpoint westlake-repl/SaProt_650M_AF2 \
+    --protein-use_lora \
+    --reaction-checkpoint pretrained/rxnfp \
+    --reaction-use_lora \
+    --batch-size 128 \
+    --protein-dataset data/sample_enzymes.tsv \
+    --reaction-dataset data/sample_reactions.tsv \
+    --outputdir result/enzymeclip/ \
+    --mode inference \
+    --model EnzymeCyCLIP \
+    --checkpoint checkpoint/best_enzymeclip_checkpoint.ckpt
+```
+- --mode: Please specify "train" or "eval" or "inference".
+- --model: Please spcify "EnzymeCLIP" or "EnzymeCyCLIP" or "EnzymeSoftCLIP" or "EnzymeSoftCyCLIP" (default: "EnzymeCyCLIP").
+
+### Process EnzymeCLIP result
+```
+python process_enzymeclip_result.py \
+    --protein-dataset data/sample_enzymes.tsv \
+    --reaction-dataset data/sample_reactions.tsv \
+    --pred-scores result/enzymeclip/cos_sim_matrix.pt \
+    --output result/enzymeclip/enzymeclip_result.tsv
+```
+
 ## Test run
 You can test EnzymeCNN and EnzymeCLIP by running following commands.
 ### EnzymeCNN
