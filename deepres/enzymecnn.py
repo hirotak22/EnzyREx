@@ -486,8 +486,9 @@ def enzymecnn_evaluate(model, dataloader, criterion, device, return_output=False
     y_pred_proba = torch.cat(predicted_probability_list).detach().numpy().copy()
     y_true = torch.cat(label_list).detach().numpy().copy()
     
+    eval_acc, eval_f1, eval_mcc, eval_auc = compute_metrics(y_true, y_pred_proba)
+    
     if not return_output:
-        eval_acc, eval_f1, eval_mcc,  eval_auc = compute_metrics(y_true, y_pred_proba)
         return total_loss, eval_acc, eval_f1, eval_mcc, eval_auc
     else:
         return total_loss, eval_acc, eval_f1, eval_mcc, eval_auc, y_pred_proba, y_true
@@ -551,8 +552,9 @@ def enzymecnn_ablation_evaluate(model, dataloader, criterion, device, return_out
     y_pred_proba = torch.cat(predicted_probability_list).detach().numpy().copy()
     y_true = torch.cat(label_list).detach().numpy().copy()
     
+    eval_acc, eval_f1, eval_mcc, eval_auc = compute_metrics(y_true, y_pred_proba)
+    
     if not return_output:
-        eval_acc, eval_f1, eval_mcc,  eval_auc = compute_metrics(y_true, y_pred_proba)
         return total_loss, eval_acc, eval_f1, eval_mcc, eval_auc
     else:
         return total_loss, eval_acc, eval_f1, eval_mcc, eval_auc, y_pred_proba, y_true
@@ -691,7 +693,7 @@ if __name__ == '__main__':
             ### Save training log
             df_log = pd.DataFrame(training_log, columns=['epoch', 'train_loss', 'train_accuracy', 'train_f1', 'train_mcc', 'train_auc',
                                                          'eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_log.to_csv(f'{outputdir}/training_log.csv', header=True, index=False)
+            df_log.to_csv(f'{outputdir}/training_log.tsv', sep='\t', header=True, index=False)
         
         ## EnzymeCNN evaluation
         if mode == 'eval':
@@ -719,7 +721,7 @@ if __name__ == '__main__':
             
             df_metrics = pd.DataFrame([[eval_loss, eval_acc, eval_f1, eval_mcc, eval_auc]],
                                       columns=['eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_metrics.to_csv(f'{outputdir}/evaluation_result.csv', header=True, index=False)
+            df_metrics.to_csv(f'{outputdir}/evaluation_result.tsv', sep='\t', header=True, index=False)
         
         ## EnzymeCNN inference
         if mode == 'inference':
@@ -788,7 +790,7 @@ if __name__ == '__main__':
             ### Save training log
             df_log = pd.DataFrame(training_log, columns=['epoch', 'train_loss', 'train_accuracy', 'train_f1', 'train_mcc', 'train_auc',
                                                          'eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_log.to_csv(f'{outputdir}/training_log.csv', header=True, index=False)
+            df_log.to_csv(f'{outputdir}/training_log.tsv', sep='\t', header=True, index=False)
             
         ## EnzymeCNN-AA evaluation
         if mode == 'eval':
@@ -816,7 +818,7 @@ if __name__ == '__main__':
             
             df_metrics = pd.DataFrame([[eval_loss, eval_acc, eval_f1, eval_mcc, eval_auc]],
                                       columns=['eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_metrics.to_csv(f'{outputdir}/evaluation_result.csv', header=True, index=False)
+            df_metrics.to_csv(f'{outputdir}/evaluation_result.tsv', sep='\t', header=True, index=False)
         
         ## EnzymeCNN-AA inference
         if mode == 'inference':
@@ -885,7 +887,7 @@ if __name__ == '__main__':
             ### Save training log
             df_log = pd.DataFrame(training_log, columns=['epoch', 'train_loss', 'train_accuracy', 'train_f1', 'train_mcc', 'train_auc',
                                                          'eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_log.to_csv(f'{outputdir}/training_log.csv', header=True, index=False)
+            df_log.to_csv(f'{outputdir}/training_log.tsv', sep='\t', header=True, index=False)
         
         ## EnzymeCNN-3Di evaluation
         if mode == 'eval':
@@ -913,7 +915,7 @@ if __name__ == '__main__':
             
             df_metrics = pd.DataFrame([[eval_loss, eval_acc, eval_f1, eval_mcc, eval_auc]],
                                       columns=['eval_loss', 'eval_accuracy', 'eval_f1', 'eval_mcc', 'eval_auc'])
-            df_metrics.to_csv(f'{outputdir}/evaluation_result.csv', header=True, index=False)
+            df_metrics.to_csv(f'{outputdir}/evaluation_result.tsv', sep='\t', header=True, index=False)
         
         ## EnzymeCNN-3Di inference
         if mode == 'inference':
