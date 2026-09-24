@@ -1,5 +1,7 @@
-# DeepRES
+# EnzyREx
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+**EnzyREx (Enzyme–Reaction Exploration)** is a deep learning framework for reaction-based comprehensive enzyme screening. EnzyREx consists of two models: EnzymeCNN and EnzymeCLIP. EnzymeCNN is a convolutional neural network (CNN) model that classifies enzymes and non-enzymes. EnzymeCLIP is CLIP-like model that learns the relationship between enzymes and reactions. EnzyREx can be used for enzyme screening and enzyme discovery.
 
 ## Requirements
 - python 3.10.14 (with following packages)
@@ -16,7 +18,7 @@
 By using `environment.yml`, you can build an anaconda environment exactly the same as this research.
 ```
 conda env create -f environment.yml
-conda activate deepres
+conda activate enzyrex
 ```
 
 ## Pretrained parameters
@@ -122,4 +124,4 @@ The result file is `result/testrun/enzymeclip/enrichment_factor.tsv`:
 | 0.1  | 8.407407407407407 |
 
 ## License
-DeepRES is released under the [MIT License](LICENSE).
+EnzyREx is released under the [MIT License](LICENSE).

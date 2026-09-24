@@ -1,4 +1,4 @@
-name: deepres
+name: enzyrex
 channels:
   - pytorch
   - nvidia
