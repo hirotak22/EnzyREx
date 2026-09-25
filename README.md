@@ -35,7 +35,7 @@ python enzymecnn.py \
     --dropout 0.1 \
     --hidden-dims 256 \
     --epoch 2 \
-    --eval-dataset data/sample_proteins.tsv \
+    --eval-dataset data/sample/sample_proteins.tsv \
     --mode inference \
     --checkpoint checkpoint/best_enzymecnn_checkpoint.pt \
     --outputdir result/enzymecnn/ \
@@ -46,7 +46,7 @@ python enzymecnn.py \
 ### Process EnzymeCNN result
 ```
 python process_enzymecnn_result.py \
-    --dataset data/sample_proteins.tsv \
+    --dataset data/sample/sample_proteins.tsv \
     --pred-scores result/enzymecnn/pred_scores.pt \
     --output result/enzymecnn/sample_proteins.processed.tsv
 ```
@@ -59,8 +59,8 @@ python enzymeclip.py \
     --reaction-checkpoint pretrained/rxnfp \
     --reaction-use_lora \
     --batch-size 128 \
-    --protein-dataset data/sample_enzymes.tsv \
-    --reaction-dataset data/sample_reactions.tsv \
+    --protein-dataset data/sample/sample_enzymes.tsv \
+    --reaction-dataset data/sample/sample_reactions.tsv \
     --outputdir result/enzymeclip/ \
     --mode inference \
     --model EnzymeCyCLIP \
@@ -72,8 +72,8 @@ python enzymeclip.py \
 ### Process EnzymeCLIP result
 ```
 python process_enzymeclip_result.py \
-    --protein-dataset data/sample_enzymes.tsv \
-    --reaction-dataset data/sample_reactions.tsv \
+    --protein-dataset data/sample/sample_enzymes.tsv \
+    --reaction-dataset data/sample/sample_reactions.tsv \
     --pred-scores result/enzymeclip/cos_sim_matrix.pt \
     --output result/enzymeclip/enzymeclip_result.tsv
 ```
@@ -89,7 +89,7 @@ python enzymecnn.py \
     --dilation 3 \
     --dropout 0.1 \
     --hidden-dims 256 \
-    --eval-dataset data/sample_proteins.tsv \
+    --eval-dataset data/sample/sample_proteins.tsv \
     --mode eval \
     --checkpoint checkpoint/best_enzymecnn_checkpoint.pt \
     --outputdir result/testrun/enzymecnn/ \
@@ -107,9 +107,9 @@ python enzymeclip.py \
     --protein-use_lora \
     --reaction-checkpoint pretrained/rxnfp \
     --reaction-use_lora \
-    --protein-dataset data/sample_enzymes.tsv \
-    --reaction-dataset data/sample_reactions.tsv \
-    --ground-truth data/sample_ground_truth.tsv \
+    --protein-dataset data/sample/sample_enzymes.tsv \
+    --reaction-dataset data/sample/sample_reactions.tsv \
+    --ground-truth data/sample/sample_ground_truth.tsv \
     --mode eval \
     --model EnzymeCyCLIP \
     --checkpoint checkpoint/best_enzymeclip_checkpoint.ckpt \

@@ -1,3 +1,6 @@
-/checkpoint/
-/pretrained/
-/result/
+checkpoint/
+data/dev/
+data/new/
+data/ecbench/
+pretrained/
+result/
