@@ -22,7 +22,7 @@ conda activate enzyrex
 ```
 
 ## Pretrained parameters
-The model weights are available at [Zenodo](https://doi.org/10.5281/zenodo.16347933). Please download files and unzip.
+The model weights are available at [Zenodo](https://doi.org/10.5281/zenodo.22953569). Please download files and unzip.
 
 ## Program Usage
 ### EnzymeCNN
